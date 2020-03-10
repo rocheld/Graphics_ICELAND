@@ -29,7 +29,7 @@ PointCloud::PointCloud(std::string objFilename, GLfloat pointSize)
         bunny = 0;
     }
     else if(objFilename == "sphere.obj") {
-        fp = fopen("/Users/Hyun/Desktop/cse/HW2/HW2/sphere.obj","rb");
+        fp = fopen("sphere.obj","rb");
         object_name = 3;
     }
 

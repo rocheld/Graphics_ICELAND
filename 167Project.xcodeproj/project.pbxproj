@@ -35,7 +35,7 @@
 		D222A7B823E91312000E1075 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
-			dstPath = shaders;
+			dstPath = shader;
 			dstSubfolderSpec = 16;
 			files = (
 				D29BCB1F2409A337002C3A94 /* line.frag in CopyFiles */,
@@ -51,7 +51,7 @@
 
 /* Begin PBXFileReference section */
 		D222A7BA23E91312000E1075 /* HW3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HW3; sourceTree = BUILT_PRODUCTS_DIR; };
-		D222A7BD23E91312000E1075 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D222A7BD23E91312000E1075 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = 167Project/main.cpp; sourceTree = SOURCE_ROOT; };
 		D222A7C523E91339000E1075 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		D222A7C723E91363000E1075 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../../usr/local/Cellar/glfw/3.3.1/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
 		D222A7C923E9142D000E1075 /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
