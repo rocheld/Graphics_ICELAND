@@ -29,13 +29,14 @@
 		D2D457F92417241E008ED186 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F42417241E008ED186 /* Transform.cpp */; };
 		D2D457FA2417241E008ED186 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F52417241E008ED186 /* Node.cpp */; };
 		D2D457FB2417241E008ED186 /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F62417241E008ED186 /* Geometry.cpp */; };
+		D2D4580C24173A71008ED186 /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2D4580A24173A71008ED186 /* terrain.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		D222A7B823E91312000E1075 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
-			dstPath = shader;
+			dstPath = shaders;
 			dstSubfolderSpec = 16;
 			files = (
 				D29BCB1F2409A337002C3A94 /* line.frag in CopyFiles */,
@@ -66,7 +67,7 @@
 		D222A7D923E9142D000E1075 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		D222A7DF23E914A5000E1075 /* dragon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragon.obj; sourceTree = "<group>"; };
 		D245A9822404BA4F00694F90 /* CubeMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CubeMap.cpp; sourceTree = "<group>"; };
-		D245A9832404BA4F00694F90 /* CubeMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = CubeMap.hpp; path = 167Project/CubeMap.hpp; sourceTree = SOURCE_ROOT; };
+		D245A9832404BA4F00694F90 /* CubeMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CubeMap.hpp; sourceTree = "<group>"; };
 		D245A9AE24052E3C00694F90 /* skybox.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = skybox.vert; sourceTree = "<group>"; };
 		D245A9AF24052E5000694F90 /* skybox.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = skybox.frag; sourceTree = "<group>"; };
 		D29BCB1D2409A1AE002C3A94 /* line.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = line.frag; sourceTree = "<group>"; };
@@ -104,6 +105,8 @@
 		D2D457F52417241E008ED186 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Node.cpp; path = 167Project/Node.cpp; sourceTree = SOURCE_ROOT; };
 		D2D457F62417241E008ED186 /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Geometry.cpp; path = 167Project/Geometry.cpp; sourceTree = SOURCE_ROOT; };
 		D2D457FC24173423008ED186 /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
+		D2D4580A24173A71008ED186 /* terrain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = terrain.cpp; sourceTree = "<group>"; };
+		D2D4580B24173A71008ED186 /* terrain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = terrain.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				D222A7D823E9142D000E1075 /* Window.cpp */,
+				D2D4580A24173A71008ED186 /* terrain.cpp */,
+				D2D4580B24173A71008ED186 /* terrain.hpp */,
 				D222A7C923E9142D000E1075 /* Window.h */,
 				D222A7CB23E9142D000E1075 /* PointCloud.cpp */,
 				D222A7CC23E9142D000E1075 /* PointCloud.h */,
@@ -298,6 +303,7 @@
 				D2D457F82417241E008ED186 /* RobotArmy.cpp in Sources */,
 				D2D457C024171E5E008ED186 /* Window.cpp in Sources */,
 				D222A7DB23E9142D000E1075 /* PointCloud.cpp in Sources */,
+				D2D4580C24173A71008ED186 /* terrain.cpp in Sources */,
 				D245A9842404BA4F00694F90 /* CubeMap.cpp in Sources */,
 				D2D457F92417241E008ED186 /* Transform.cpp in Sources */,
 				D2D457CE241722B3008ED186 /* stb_image_aug.c in Sources */,
