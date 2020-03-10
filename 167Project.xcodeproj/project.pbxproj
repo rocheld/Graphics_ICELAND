@@ -66,7 +66,7 @@
 		D222A7D923E9142D000E1075 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		D222A7DF23E914A5000E1075 /* dragon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragon.obj; sourceTree = "<group>"; };
 		D245A9822404BA4F00694F90 /* CubeMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CubeMap.cpp; sourceTree = "<group>"; };
-		D245A9832404BA4F00694F90 /* CubeMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CubeMap.hpp; sourceTree = "<group>"; };
+		D245A9832404BA4F00694F90 /* CubeMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = CubeMap.hpp; path = 167Project/CubeMap.hpp; sourceTree = SOURCE_ROOT; };
 		D245A9AE24052E3C00694F90 /* skybox.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = skybox.vert; sourceTree = "<group>"; };
 		D245A9AF24052E5000694F90 /* skybox.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = skybox.frag; sourceTree = "<group>"; };
 		D29BCB1D2409A1AE002C3A94 /* line.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = line.frag; sourceTree = "<group>"; };
@@ -81,17 +81,17 @@
 		D2D457CB241722B3008ED186 /* image_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = image_helper.h; path = 167Project/image_helper.h; sourceTree = SOURCE_ROOT; };
 		D2D457CC241722B3008ED186 /* SOIL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOIL.h; path = 167Project/SOIL.h; sourceTree = SOURCE_ROOT; };
 		D2D457CD241722B3008ED186 /* image_helper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = image_helper.c; path = 167Project/image_helper.c; sourceTree = SOURCE_ROOT; };
-		D2D457E1241723DC008ED186 /* right.ppm */ = {isa = PBXFileReference; lastKnownFileType = file; name = right.ppm; path = 167Project/right.ppm; sourceTree = SOURCE_ROOT; };
+		D2D457E1241723DC008ED186 /* right.ppm */ = {isa = PBXFileReference; lastKnownFileType = text; name = right.ppm; path = 167Project/right.ppm; sourceTree = SOURCE_ROOT; };
 		D2D457E2241723DC008ED186 /* left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = left.jpg; path = 167Project/left.jpg; sourceTree = SOURCE_ROOT; };
 		D2D457E3241723DC008ED186 /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = back.jpg; path = 167Project/back.jpg; sourceTree = SOURCE_ROOT; };
-		D2D457E4241723DC008ED186 /* back.ppm */ = {isa = PBXFileReference; lastKnownFileType = file; name = back.ppm; path = 167Project/back.ppm; sourceTree = SOURCE_ROOT; };
+		D2D457E4241723DC008ED186 /* back.ppm */ = {isa = PBXFileReference; lastKnownFileType = text; name = back.ppm; path = 167Project/back.ppm; sourceTree = SOURCE_ROOT; };
 		D2D457E5241723DC008ED186 /* top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = top.jpg; path = 167Project/top.jpg; sourceTree = SOURCE_ROOT; };
-		D2D457E6241723DC008ED186 /* top.ppm */ = {isa = PBXFileReference; lastKnownFileType = file; name = top.ppm; path = 167Project/top.ppm; sourceTree = SOURCE_ROOT; };
+		D2D457E6241723DC008ED186 /* top.ppm */ = {isa = PBXFileReference; lastKnownFileType = text; name = top.ppm; path = 167Project/top.ppm; sourceTree = SOURCE_ROOT; };
 		D2D457E7241723DC008ED186 /* right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = right.jpg; path = 167Project/right.jpg; sourceTree = SOURCE_ROOT; };
-		D2D457E8241723DC008ED186 /* left.ppm */ = {isa = PBXFileReference; lastKnownFileType = file; name = left.ppm; path = 167Project/left.ppm; sourceTree = SOURCE_ROOT; };
-		D2D457E9241723DC008ED186 /* front.ppm */ = {isa = PBXFileReference; lastKnownFileType = file; name = front.ppm; path = 167Project/front.ppm; sourceTree = SOURCE_ROOT; };
+		D2D457E8241723DC008ED186 /* left.ppm */ = {isa = PBXFileReference; lastKnownFileType = text; name = left.ppm; path = 167Project/left.ppm; sourceTree = SOURCE_ROOT; };
+		D2D457E9241723DC008ED186 /* front.ppm */ = {isa = PBXFileReference; lastKnownFileType = text; name = front.ppm; path = 167Project/front.ppm; sourceTree = SOURCE_ROOT; };
 		D2D457EA241723DC008ED186 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = front.jpg; path = 167Project/front.jpg; sourceTree = SOURCE_ROOT; };
-		D2D457EB241723DC008ED186 /* base.ppm */ = {isa = PBXFileReference; lastKnownFileType = file; name = base.ppm; path = 167Project/base.ppm; sourceTree = SOURCE_ROOT; };
+		D2D457EB241723DC008ED186 /* base.ppm */ = {isa = PBXFileReference; lastKnownFileType = text; name = base.ppm; path = 167Project/base.ppm; sourceTree = SOURCE_ROOT; };
 		D2D457EC241723DC008ED186 /* base.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = base.jpg; path = 167Project/base.jpg; sourceTree = SOURCE_ROOT; };
 		D2D457ED2417241D008ED186 /* Node.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Node.hpp; path = 167Project/Node.hpp; sourceTree = SOURCE_ROOT; };
 		D2D457EE2417241D008ED186 /* Robot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Robot.cpp; path = 167Project/Robot.cpp; sourceTree = SOURCE_ROOT; };
@@ -152,6 +152,18 @@
 				D222A7D323E9142D000E1075 /* shader.h */,
 				D222A7BD23E91312000E1075 /* main.cpp */,
 				D222A7DF23E914A5000E1075 /* dragon.obj */,
+				D2D457E3241723DC008ED186 /* back.jpg */,
+				D2D457E4241723DC008ED186 /* back.ppm */,
+				D2D457EC241723DC008ED186 /* base.jpg */,
+				D2D457EB241723DC008ED186 /* base.ppm */,
+				D2D457EA241723DC008ED186 /* front.jpg */,
+				D2D457E9241723DC008ED186 /* front.ppm */,
+				D2D457E2241723DC008ED186 /* left.jpg */,
+				D2D457E8241723DC008ED186 /* left.ppm */,
+				D2D457E7241723DC008ED186 /* right.jpg */,
+				D2D457E1241723DC008ED186 /* right.ppm */,
+				D2D457E5241723DC008ED186 /* top.jpg */,
+				D2D457E6241723DC008ED186 /* top.ppm */,
 				D2D457E02417239D008ED186 /* scene graph */,
 				D2D457DF2417236B008ED186 /* cubemap image */,
 				D2D457C3241721BF008ED186 /* SOIL */,
@@ -202,21 +214,10 @@
 		D2D457DF2417236B008ED186 /* cubemap image */ = {
 			isa = PBXGroup;
 			children = (
-				D2D457E3241723DC008ED186 /* back.jpg */,
-				D2D457E4241723DC008ED186 /* back.ppm */,
-				D2D457EC241723DC008ED186 /* base.jpg */,
-				D2D457EB241723DC008ED186 /* base.ppm */,
-				D2D457EA241723DC008ED186 /* front.jpg */,
-				D2D457E9241723DC008ED186 /* front.ppm */,
-				D2D457E2241723DC008ED186 /* left.jpg */,
-				D2D457E8241723DC008ED186 /* left.ppm */,
-				D2D457E7241723DC008ED186 /* right.jpg */,
-				D2D457E1241723DC008ED186 /* right.ppm */,
-				D2D457E5241723DC008ED186 /* top.jpg */,
-				D2D457E6241723DC008ED186 /* top.ppm */,
 			);
-			path = "cubemap image";
-			sourceTree = "<group>";
+			name = "cubemap image";
+			path = "167Project/cubemap image";
+			sourceTree = SOURCE_ROOT;
 		};
 		D2D457E02417239D008ED186 /* scene graph */ = {
 			isa = PBXGroup;
