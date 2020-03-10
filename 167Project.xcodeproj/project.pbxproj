@@ -103,7 +103,7 @@
 		D2D457F42417241E008ED186 /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Transform.cpp; path = 167Project/Transform.cpp; sourceTree = SOURCE_ROOT; };
 		D2D457F52417241E008ED186 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Node.cpp; path = 167Project/Node.cpp; sourceTree = SOURCE_ROOT; };
 		D2D457F62417241E008ED186 /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Geometry.cpp; path = 167Project/Geometry.cpp; sourceTree = SOURCE_ROOT; };
-		D2D457FC24173423008ED186 /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sphere.obj; path = 167Project/sphere.obj; sourceTree = "<group>"; };
+		D2D457FC24173423008ED186 /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +122,6 @@
 		D222A7B123E91312000E1075 = {
 			isa = PBXGroup;
 			children = (
-				D2D457FC24173423008ED186 /* sphere.obj */,
 				D222A7BC23E91312000E1075 /* 167Project */,
 				D222A7BB23E91312000E1075 /* Products */,
 				D222A7C423E91339000E1075 /* Frameworks */,
@@ -144,6 +143,7 @@
 				D222A7C923E9142D000E1075 /* Window.h */,
 				D222A7CB23E9142D000E1075 /* PointCloud.cpp */,
 				D222A7CC23E9142D000E1075 /* PointCloud.h */,
+				D2D457FC24173423008ED186 /* sphere.obj */,
 				D245A9822404BA4F00694F90 /* CubeMap.cpp */,
 				D245A9832404BA4F00694F90 /* CubeMap.hpp */,
 				D222A7D923E9142D000E1075 /* main.h */,
