@@ -24,7 +24,7 @@
 #include "Node.hpp"
 #include "Transform.hpp"
 #include "Geometry.hpp"
-
+#include "Terrain.hpp"
 
 class Window 
 {

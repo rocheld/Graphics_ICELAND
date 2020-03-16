@@ -94,7 +94,7 @@ CubeMap::CubeMap() {
    // Unbind from the VAO.
    glBindVertexArray(0);
     //myTexture = loadTexture();
-    loadTexture2();
+    loadTexture();
 }
 void CubeMap::draw() {
     

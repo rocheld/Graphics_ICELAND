@@ -29,7 +29,7 @@
 		D2D457F92417241E008ED186 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F42417241E008ED186 /* Transform.cpp */; };
 		D2D457FA2417241E008ED186 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F52417241E008ED186 /* Node.cpp */; };
 		D2D457FB2417241E008ED186 /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F62417241E008ED186 /* Geometry.cpp */; };
-		D2D4580C24173A71008ED186 /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2D4580A24173A71008ED186 /* terrain.cpp */; };
+		D2D4580C24173A71008ED186 /* Terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2D4580A24173A71008ED186 /* Terrain.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,17 +83,12 @@
 		D2D457CC241722B3008ED186 /* SOIL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOIL.h; path = 167Project/SOIL.h; sourceTree = SOURCE_ROOT; };
 		D2D457CD241722B3008ED186 /* image_helper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = image_helper.c; path = 167Project/image_helper.c; sourceTree = SOURCE_ROOT; };
 		D2D457E1241723DC008ED186 /* right.ppm */ = {isa = PBXFileReference; lastKnownFileType = text; name = right.ppm; path = 167Project/right.ppm; sourceTree = SOURCE_ROOT; };
-		D2D457E2241723DC008ED186 /* left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = left.jpg; path = 167Project/left.jpg; sourceTree = SOURCE_ROOT; };
-		D2D457E3241723DC008ED186 /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = back.jpg; path = 167Project/back.jpg; sourceTree = SOURCE_ROOT; };
 		D2D457E4241723DC008ED186 /* back.ppm */ = {isa = PBXFileReference; lastKnownFileType = text; name = back.ppm; path = 167Project/back.ppm; sourceTree = SOURCE_ROOT; };
-		D2D457E5241723DC008ED186 /* top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = top.jpg; path = 167Project/top.jpg; sourceTree = SOURCE_ROOT; };
 		D2D457E6241723DC008ED186 /* top.ppm */ = {isa = PBXFileReference; lastKnownFileType = text; name = top.ppm; path = 167Project/top.ppm; sourceTree = SOURCE_ROOT; };
-		D2D457E7241723DC008ED186 /* right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = right.jpg; path = 167Project/right.jpg; sourceTree = SOURCE_ROOT; };
 		D2D457E8241723DC008ED186 /* left.ppm */ = {isa = PBXFileReference; lastKnownFileType = text; name = left.ppm; path = 167Project/left.ppm; sourceTree = SOURCE_ROOT; };
 		D2D457E9241723DC008ED186 /* front.ppm */ = {isa = PBXFileReference; lastKnownFileType = text; name = front.ppm; path = 167Project/front.ppm; sourceTree = SOURCE_ROOT; };
 		D2D457EA241723DC008ED186 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = front.jpg; path = 167Project/front.jpg; sourceTree = SOURCE_ROOT; };
 		D2D457EB241723DC008ED186 /* base.ppm */ = {isa = PBXFileReference; lastKnownFileType = text; name = base.ppm; path = 167Project/base.ppm; sourceTree = SOURCE_ROOT; };
-		D2D457EC241723DC008ED186 /* base.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = base.jpg; path = 167Project/base.jpg; sourceTree = SOURCE_ROOT; };
 		D2D457ED2417241D008ED186 /* Node.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Node.hpp; path = 167Project/Node.hpp; sourceTree = SOURCE_ROOT; };
 		D2D457EE2417241D008ED186 /* Robot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Robot.cpp; path = 167Project/Robot.cpp; sourceTree = SOURCE_ROOT; };
 		D2D457EF2417241D008ED186 /* RobotArmy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RobotArmy.cpp; path = 167Project/RobotArmy.cpp; sourceTree = SOURCE_ROOT; };
@@ -105,8 +100,8 @@
 		D2D457F52417241E008ED186 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Node.cpp; path = 167Project/Node.cpp; sourceTree = SOURCE_ROOT; };
 		D2D457F62417241E008ED186 /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Geometry.cpp; path = 167Project/Geometry.cpp; sourceTree = SOURCE_ROOT; };
 		D2D457FC24173423008ED186 /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
-		D2D4580A24173A71008ED186 /* terrain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = terrain.cpp; sourceTree = "<group>"; };
-		D2D4580B24173A71008ED186 /* terrain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = terrain.hpp; sourceTree = "<group>"; };
+		D2D4580A24173A71008ED186 /* Terrain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Terrain.cpp; sourceTree = "<group>"; };
+		D2D4580B24173A71008ED186 /* Terrain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Terrain.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,8 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				D222A7D823E9142D000E1075 /* Window.cpp */,
-				D2D4580A24173A71008ED186 /* terrain.cpp */,
-				D2D4580B24173A71008ED186 /* terrain.hpp */,
+				D2D4580A24173A71008ED186 /* Terrain.cpp */,
+				D2D4580B24173A71008ED186 /* Terrain.hpp */,
 				D222A7C923E9142D000E1075 /* Window.h */,
 				D222A7CB23E9142D000E1075 /* PointCloud.cpp */,
 				D222A7CC23E9142D000E1075 /* PointCloud.h */,
@@ -157,17 +152,12 @@
 				D222A7D323E9142D000E1075 /* shader.h */,
 				D222A7BD23E91312000E1075 /* main.cpp */,
 				D222A7DF23E914A5000E1075 /* dragon.obj */,
-				D2D457E3241723DC008ED186 /* back.jpg */,
 				D2D457E4241723DC008ED186 /* back.ppm */,
-				D2D457EC241723DC008ED186 /* base.jpg */,
 				D2D457EB241723DC008ED186 /* base.ppm */,
 				D2D457EA241723DC008ED186 /* front.jpg */,
 				D2D457E9241723DC008ED186 /* front.ppm */,
-				D2D457E2241723DC008ED186 /* left.jpg */,
 				D2D457E8241723DC008ED186 /* left.ppm */,
-				D2D457E7241723DC008ED186 /* right.jpg */,
 				D2D457E1241723DC008ED186 /* right.ppm */,
-				D2D457E5241723DC008ED186 /* top.jpg */,
 				D2D457E6241723DC008ED186 /* top.ppm */,
 				D2D457E02417239D008ED186 /* scene graph */,
 				D2D457DF2417236B008ED186 /* cubemap image */,
@@ -303,7 +293,7 @@
 				D2D457F82417241E008ED186 /* RobotArmy.cpp in Sources */,
 				D2D457C024171E5E008ED186 /* Window.cpp in Sources */,
 				D222A7DB23E9142D000E1075 /* PointCloud.cpp in Sources */,
-				D2D4580C24173A71008ED186 /* terrain.cpp in Sources */,
+				D2D4580C24173A71008ED186 /* Terrain.cpp in Sources */,
 				D245A9842404BA4F00694F90 /* CubeMap.cpp in Sources */,
 				D2D457F92417241E008ED186 /* Transform.cpp in Sources */,
 				D2D457CE241722B3008ED186 /* stb_image_aug.c in Sources */,

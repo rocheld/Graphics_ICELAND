@@ -17,6 +17,7 @@ namespace
     CubeMap* skybox;
     PointCloud* dragon;
     PointCloud* sphere;
+    Terrain* hmap;
 
     Object* dragonObj;
     Object* currentObj;// The object currently displaying.
@@ -142,6 +143,8 @@ bool Window::initializeObjects()
     skybox = new CubeMap();
     dragon = new PointCloud("dragon.obj", 1.0f);
     sphere = new PointCloud("sphere.obj",1.0f);
+    //hmap  = new Terrain(5);
+    
     
     sphereObj = sphere;
     dragonObj = dragon;
