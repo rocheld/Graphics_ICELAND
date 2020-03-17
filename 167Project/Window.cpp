@@ -22,6 +22,7 @@ namespace
     Object* dragonObj;
     Object* currentObj;// The object currently displaying.
     Object* sphereObj;
+    Cube* cube;
 
     float scale;
     float deg;
@@ -59,33 +60,11 @@ namespace
     const int ZOOM = 3;
     const int ARMYSPIN = 4;
 
-    // variable for light
-    GLuint lightColorLoc;
-    GLuint lightPosLoc;
-    GLuint ambientLoc;
-    GLuint shinyLoc;
-    GLuint diffuseLoc;
-    GLuint specularLoc;
-    GLuint lightPosLoc2;
-    GLuint lightAmbientLoc;
-    GLuint lightDiffuseLoc;
-    GLuint lightSpecLoc;
+
 
     glm::vec3 lightPos = glm::vec3(0.0f,0.0f,15.0f);
-    glm::vec3 default_lightPos = lightPos;
-    glm::vec3 lightColor;
-    glm::vec3 tempColor;
-    glm::vec3 zero = glm::vec3(0.0f,0.0f,0.0f);
-    glm::vec3 ambient = glm::vec3(0.2f,0.2f,0.2f);
-    glm::vec3 diffuse = glm::vec3(0.2f,0.2f,0.3f);
-    glm::vec3 specular = glm::vec3(0.1f,0.1f,0.1f);
-    glm::mat3 rot_matrix;
 
-    float shininess = 1.0f;
-    bool rotate_dir_light = false;
-    bool lightMode = false;
-    bool pointLight = false;
-    bool dirLight = false;
+
 
 
 
@@ -101,6 +80,11 @@ GLuint programT;
     GLuint viewLine;
     glm::vec3 camera_front = center;
 
+
+
+    vector<Cube*> particles;
+    float startTime;
+    int flip;
 };
 
 bool Window::initializeProgram()
@@ -127,7 +111,7 @@ bool Window::initializeProgram()
     viewLoc = glGetUniformLocation(program, "view");
     modelLoc = glGetUniformLocation(program, "model");
     colorLoc = glGetUniformLocation(program, "color");
-    flagLoc = glGetUniformLocation(program, "flag");
+    //flagLoc = glGetUniformLocation(program, "flag");
     
     //hw3
     glUseProgram(programSky);
@@ -147,10 +131,18 @@ bool Window::initializeProgram()
 bool Window::initializeObjects()
 {
 
+    flip = 1;
+    startTime = clock();
+    
     skybox = new CubeMap();
     dragon = new PointCloud("dragon.obj", 1.0f);
     sphere = new PointCloud("sphere.obj",1.0f);
-    hmap  = new Terrain(513);
+    //hmap  = new Terrain(513);
+    
+    cube = new Cube(0.3f,clock(),flip);
+    currentObj = cube;
+    particles.push_back(cube);
+    
     
     
     sphereObj = sphere;
@@ -163,18 +155,9 @@ bool Window::initializeObjects()
 
     dragon->ScaleAndCenter();
     
-    glm::mat4 model = sphereObj->getModel();
-    model = glm::scale(model,glm::vec3(0.4f,0.4f,0.4f));
-    sphereObj->setModel(model);
     
-    // Define rotation matrix
-    float deg = -0.15f;
-    float cc= glm::cos(glm::radians(deg));
-    float ss = glm::sin(glm::radians(deg));
-    rot_matrix[0] = glm::vec3(cc,0,-ss);
-    rot_matrix[1] = glm::vec3(0,1,0);
-    rot_matrix[2] = glm::vec3(ss,0,cc);
-    currentObj = hmap;
+    
+    //currentObj = hmap;
     return true;
 }
 
@@ -266,7 +249,22 @@ void Window::resizeCallback(GLFWwindow* window, int w, int h)
 void Window::idleCallback()
 {
     // Perform any updates as necessary.
-    dragonObj->update();
+    flip *= -1;
+    int timeElasped =clock() - startTime;
+    if(particles.size()<200000 && timeElasped > 100000 ){
+       particles.push_back(new Cube(0.3f,clock(),flip));
+        startTime = clock();
+    }
+    
+    if(particles.size() > 0 && clock() -particles[0]->birthTime > 6000000 ){
+        particles.erase(particles.begin());
+    }
+     
+    for(int i = 0; i < particles.size(); i++){
+        particles[i]->update();
+    }
+    
+    std::cout << particles.size()  << std::endl;
 }
 
 void Window::displayCallback(GLFWwindow* window)
@@ -283,6 +281,7 @@ void Window::displayCallback(GLFWwindow* window)
         skybox->draw();
         
         // Switch back to using OpenGL's rasterizer
+        /*
         glUseProgram(programT);
         currentObj = hmap;
         glm::mat4 model = hmap->getModel();
@@ -294,11 +293,29 @@ void Window::displayCallback(GLFWwindow* window)
         glUniform3fv(colorT, 1, glm::value_ptr(color));
         currentObj->draw();
         //dragonObj->draw();
+         */
+    
+    
+    
+        for(int i = 0; i < particles.size(); i++){
+        // Specify the values of the uniform variables we are going to use.
+            glUseProgram(program);
+            glm::mat4 model = particles[i]->getModel();
+            glm::vec3 color = particles[i]->getColor();
+            glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+            glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+            glUniform3fv(colorLoc, 1, glm::value_ptr(color));
+
+        // Render the object.
+            particles[i]->draw();
+        }
         
         // Gets events, including input such as keyboard and mouse or window resizing.
         glfwPollEvents();
         // Swap buffers.
         glfwSwapBuffers(window);
+        
         
     
 }
