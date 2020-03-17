@@ -271,7 +271,7 @@ void Window::idleCallback()
 
 void Window::displayCallback(GLFWwindow* window)
 {
-        std::cout <<  eye.x << " " << eye.y << ""  << eye.z << std::endl;
+        //std::cout <<  eye.x << " " << eye.y << ""  << eye.z << std::endl;
     
         glUseProgram(programSky);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -366,11 +366,24 @@ void Window::cursor_position_callback(GLFWwindow* window, double xpos, double yp
                     matrix3 = glm::translate(matrix3,eye);
        
                     xyzw = matrix3*matrix2*matrix1*xyzw;
-    
+                    
                     camera_front.x = xyzw.x/xyzw.w;
                     camera_front.y = xyzw.y/xyzw.w;
-                    view = glm::lookAt(eye, camera_front, up);
+                    camera_front.z = xyzw.z/xyzw.w;
+                //camera_front = glm::normalize(camera_front);
                     center = camera_front;
+                    cout << "center " << center.x << center.y << center.z << endl;
+                    glm::vec3 forward = eye - center;
+                    cout << "forward " << forward.x << forward.y << forward.z << endl;
+                    forward = glm::normalize(forward);
+                    glm::vec3 left = glm::cross(forward,left);
+                    
+                    left = glm::normalize(left);
+                    cout <<"left" << left.x << left.y << left.z << endl;
+                    //up = glm::cross(forward,left);
+                    cout << up.x << up.y << up.z << endl;
+                    view = glm::lookAt(eye, camera_front, up);
+                    
                 /*
                     m = currentObj->getModel();
                     m = glm::rotate(m, velocity*2.0f,cross_product);
