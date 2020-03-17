@@ -16,10 +16,10 @@ using namespace std;
 Terrain::Terrain(int size) {
     model = glm::mat4(1.0f);
     color = glm::vec3(1.0f, 0.95f, 0.1f);
+    maxHeight = 0.0f;
     glm::vec3 center ;
     float cx = (float) size / 2.0f;
-    center = glm::vec3(-cx,-45.0f,-cx);
-    model = glm::translate(model,center);
+
     
     this->width = size-1;
     this->height = size-1;
@@ -75,6 +75,9 @@ Terrain::Terrain(int size) {
     for(int i=0; i <5; i++)
         filter(0.75f);
     
+    
+    center = glm::vec3(-cx,-maxHeight,-cx);
+    model = glm::translate(model,center);
     mesh();
     
     glGenVertexArrays(1, &vao);
@@ -121,7 +124,11 @@ void Terrain::update() {
 void Terrain::filter(float k) {
     for(int i = 1; i < size; i++) {
         for(int j = 0; j < size; j++) {
-            map[i][j] = map[i-1][j] * (1-k) + map[i][j] * k;
+            float h = map[i-1][j] * (1-k) + map[i][j] * k;
+            map[i][j] = h;
+            
+            if(h > maxHeight)
+                maxHeight = h;
         }
     }
 }

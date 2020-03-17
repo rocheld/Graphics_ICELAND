@@ -41,6 +41,7 @@ class Terrain : public Object
     
     public:
     Terrain(int size);
+    int maxHeight;
     void d_step(int x, int y, int size, int r);
     void s_step(int x, int y, int size, int r);
     void mesh();
