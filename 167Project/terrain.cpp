@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
-
+#include "stb_image_aug.h"
 using namespace std;
 
 Terrain::Terrain(int size) {
@@ -18,7 +18,7 @@ Terrain::Terrain(int size) {
     color = glm::vec3(1.0f, 0.95f, 0.1f);
     glm::vec3 center ;
     float cx = (float) size / 2.0f;
-    center = glm::vec3(-cx,-50.0f,-cx);
+    center = glm::vec3(-cx,-45.0f,-cx);
     model = glm::translate(model,center);
     
     this->width = size-1;
@@ -39,12 +39,13 @@ Terrain::Terrain(int size) {
     }
     
     // Initialize four points
-    map[0][0] = 10.0f;
-    map[width][0] = 5.0f;
-    map[0][height] = 3.0f;
-    map[height][width] = 10.0f;
-    int half;
     srandom((unsigned)time(NULL));
+    map[0][0] = rand() % 20;
+    map[width][0] = rand() % 30;
+    map[0][height] = rand() % 10;
+    map[height][width] = rand() % 30;
+    int half;
+   
     while(squareLen > 1) {
         half = squareLen / 2;
         
@@ -70,6 +71,10 @@ Terrain::Terrain(int size) {
         }
     }
     */
+    
+    for(int i=0; i <5; i++)
+        filter(0.75f);
+    
     mesh();
     
     glGenVertexArrays(1, &vao);
@@ -96,8 +101,12 @@ Terrain::Terrain(int size) {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(glm::ivec3)*face.size(), face.data(), GL_STATIC_DRAW);
     
-
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
     
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
+    loadTexture();
     
     // Unbind from the VBO.
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -109,6 +118,13 @@ Terrain::Terrain(int size) {
 void Terrain::update() {
     
 }
+void Terrain::filter(float k) {
+    for(int i = 1; i < size; i++) {
+        for(int j = 0; j < size; j++) {
+            map[i][j] = map[i-1][j] * (1-k) + map[i][j] * k;
+        }
+    }
+}
 void Terrain::draw() {
     // Bind to the VAO.
     glBindVertexArray(vao);
@@ -117,7 +133,7 @@ void Terrain::draw() {
     // Draw points
     glDrawArrays(GL_POINTS, 0, vertex.size());
     // Draw triangles
-    glDrawElements(GL_LINES, 3*face.size(), GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, 3*face.size(), GL_UNSIGNED_INT, 0);
     // Unbind from the VAO.
     glBindVertexArray(0);
 }
@@ -149,10 +165,10 @@ void Terrain::s_step(int x, int y, int half, int r) {
     int whole = half+half;
     float center = map[x+half][y+half];
     if(half >= 1 && x+whole < size && y+whole < size) {
-        down = (map[x][y] + center + map[x+half+half][y])/3;
-        left = (map[x][y] + center + map[x][y+whole])/3;
-        top = (map[x][y+half] + center + map[x+whole][y+whole])/3;
-        right = (map[x+whole][y+whole] + center + map[x+whole][y])/3;
+        down = (map[x][y] + center + map[x+half+half][y])/3.0f;
+        left = (map[x][y] + center + map[x][y+whole])/3.0f;
+        top = (map[x][y+half] + center + map[x+whole][y+whole])/3.0f;
+        right = (map[x+whole][y+whole] + center + map[x+whole][y])/3.0f;
         
         map[x+half][y] = down + r; // down
         map[x][y+half] = left + r; // left
@@ -186,4 +202,28 @@ void Terrain::mesh() {
         face.push_back(temp1);
         face.push_back(temp2);
     }
+}
+void Terrain::loadTexture() {
+    int width, height, nrChannels;
+    string file = "terrain.png";
+    string file2 = "terrain2.png";
+    unsigned char* data = stbi_load(file.c_str(), &width, &height, &nrChannels,0);
+    
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    
+    if(data) {
+        glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, width,height,0,GL_RGB, GL_UNSIGNED_BYTE,data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else {
+        cout << "TERRAIN TExture error" << endl;
+    }
+    stbi_image_free(data);
+
 }
