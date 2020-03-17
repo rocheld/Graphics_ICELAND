@@ -490,16 +490,7 @@ void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, 
                     center = eye + glm::vec3(0,0,-10);
                     view = glm::lookAt(eye, center, up);
                     break;
-                case GLFW_KEY_D:
-                    eye = eye + glm::vec3(1,0,0);
-                    center = eye + glm::vec3(0,0,-10);
-                    view = glm::lookAt(eye, center, up);
-                    break;
-                case GLFW_KEY_A:
-                    eye = eye + glm::vec3(-1,0,0);
-                    center = eye + glm::vec3(0,0,-10);
-                    view = glm::lookAt(eye, center, up);
-                    break;
+              
                 default:
                     break;
             }
