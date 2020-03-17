@@ -25,6 +25,7 @@
 #include "Transform.hpp"
 #include "Geometry.hpp"
 #include "Terrain.hpp"
+#include "Cube.h"
 
 class Window 
 {

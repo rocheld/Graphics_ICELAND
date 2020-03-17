@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D51D6A1242080DD004E8020 /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D51D69F242080DD004E8020 /* Cube.cpp */; };
+		5D51D6A42420ACDB004E8020 /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D51D6A22420ACDB004E8020 /* Cube.cpp */; };
 		D222A7BE23E91312000E1075 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D222A7BD23E91312000E1075 /* main.cpp */; };
 		D222A7C623E91339000E1075 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D222A7C523E91339000E1075 /* OpenGL.framework */; };
 		D222A7C823E91363000E1075 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D222A7C723E91363000E1075 /* libglfw.3.3.dylib */; };
@@ -53,6 +55,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5D51D69F242080DD004E8020 /* Cube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cube.cpp; path = ../../HW0/Cube.cpp; sourceTree = "<group>"; };
+		5D51D6A0242080DD004E8020 /* Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cube.h; path = ../../HW0/Cube.h; sourceTree = "<group>"; };
+		5D51D6A22420ACDB004E8020 /* Cube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cube.cpp; sourceTree = "<group>"; };
+		5D51D6A32420ACDB004E8020 /* Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cube.h; sourceTree = "<group>"; };
 		D222A7BA23E91312000E1075 /* HW3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HW3; sourceTree = BUILT_PRODUCTS_DIR; };
 		D222A7BD23E91312000E1075 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = 167Project/main.cpp; sourceTree = SOURCE_ROOT; };
 		D222A7C523E91339000E1075 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -144,6 +150,10 @@
 		D222A7BC23E91312000E1075 /* 167Project */ = {
 			isa = PBXGroup;
 			children = (
+				5D51D69F242080DD004E8020 /* Cube.cpp */,
+				5D51D6A0242080DD004E8020 /* Cube.h */,
+				5D51D6A22420ACDB004E8020 /* Cube.cpp */,
+				5D51D6A32420ACDB004E8020 /* Cube.h */,
 				D222A7D823E9142D000E1075 /* Window.cpp */,
 				D2D4580A24173A71008ED186 /* Terrain.cpp */,
 				D2D4580B24173A71008ED186 /* Terrain.hpp */,
@@ -300,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D51D6A42420ACDB004E8020 /* Cube.cpp in Sources */,
 				D2D457F72417241E008ED186 /* Robot.cpp in Sources */,
 				D2D457CF241722B3008ED186 /* SOIL.c in Sources */,
 				D2D457F82417241E008ED186 /* RobotArmy.cpp in Sources */,
@@ -308,6 +319,7 @@
 				D2D4580C24173A71008ED186 /* Terrain.cpp in Sources */,
 				D245A9842404BA4F00694F90 /* CubeMap.cpp in Sources */,
 				D2D457F92417241E008ED186 /* Transform.cpp in Sources */,
+				5D51D6A1242080DD004E8020 /* Cube.cpp in Sources */,
 				D2D457CE241722B3008ED186 /* stb_image_aug.c in Sources */,
 				D2D457D0241722B3008ED186 /* image_DXT.c in Sources */,
 				D2D457FA2417241E008ED186 /* Node.cpp in Sources */,
