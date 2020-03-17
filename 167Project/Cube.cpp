@@ -5,7 +5,7 @@ Cube::Cube(float size, float time, int flip)
 	// Model matrix. Since the original size of the cube is 2, in order to
 	// have a cube of some size, we need to scale the cube by size / 2.
     model = glm::mat4(1.0f);
-    glm:: mat4 model2 = glm::translate(glm::vec3(flip*rand()%300 - 100,250,rand()%40));
+    glm:: mat4 model2 = glm::translate(glm::vec3(flip*rand()%300 - 400,250,flip*rand()%300));
 	model = glm::scale(glm::vec3(size / 5.0f)) * model2 *model;
 
 	// The color of the cube. Try setting it to something else!
@@ -23,7 +23,7 @@ Cube::Cube(float size, float time, int flip)
 	 */
 
     birthTime = time;
-    velocity =0.01;
+    velocity =0.06;
     
     
 	 // The 8 vertices of a cube.
@@ -105,7 +105,7 @@ void Cube::draw()
 	glBindVertexArray(vao);
 	// Draw triangles using the indices in the second VBO, which is an 
 	// elemnt array buffer.
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	// Unbind from the VAO.
 	glBindVertexArray(0);
 }

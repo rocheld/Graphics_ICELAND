@@ -29,8 +29,8 @@ namespace
     std::vector<Object*> temp;
     
     // Camera
-    glm::vec3 eye(0, 0, 20); // Camera position.
-    glm::vec3 center(0, 3, 0); // The point we are looking at.
+    glm::vec3 eye(0, -30, 15); // Camera position.
+    glm::vec3 center(0, -30, 0); // The point we are looking at.
     glm::vec3 up(0, 10, 0); // The up direction of the camera.
     float fovy = 60;
     float near = 1;
@@ -85,6 +85,7 @@ namespace
     vector<Cube*> particles;
     float startTime;
     int flip;
+    int particleMode;
 };
 
 bool Window::initializeProgram()
@@ -133,11 +134,12 @@ bool Window::initializeObjects()
 
     flip = 1;
     startTime = clock();
+    particleMode = 0;
     
     skybox = new CubeMap();
     dragon = new PointCloud("dragon.obj", 1.0f);
     sphere = new PointCloud("sphere.obj",1.0f);
-    hmap  = new Terrain(513);
+    hmap  = new Terrain(33);
     
     cube = new Cube(0.3f,clock(),flip);
     currentObj = cube;
@@ -251,7 +253,7 @@ void Window::idleCallback()
     // Perform any updates as necessary.
     flip *= -1;
     int timeElasped =clock() - startTime;
-    if(particles.size()<200000 && timeElasped > 100000 ){
+    if(particles.size()<200000 && timeElasped > 5000 ){
        particles.push_back(new Cube(0.3f,clock(),flip));
         startTime = clock();
     }
@@ -264,7 +266,7 @@ void Window::idleCallback()
         particles[i]->update();
     }
     
-    std::cout << particles.size()  << std::endl;
+    //std::cout << particles.size()  << std::endl;
 }
 
 void Window::displayCallback(GLFWwindow* window)
@@ -300,6 +302,7 @@ void Window::displayCallback(GLFWwindow* window)
     
     
         for(int i = 0; i < particles.size(); i++){
+            if(particleMode == 0) break;
         // Specify the values of the uniform variables we are going to use.
             glUseProgram(program);
             glm::mat4 model = particles[i]->getModel();
@@ -347,7 +350,7 @@ void Window::cursor_position_callback(GLFWwindow* window, double xpos, double yp
         case ROTATION:
             
             if( velocity < 0.001) {
-                    std::cerr << "slow" << std::endl;
+                    //std::cerr << "slow" << std::endl;
             }
             else {
                     
@@ -437,7 +440,7 @@ void Window::mouse_button_callback(GLFWwindow* window, int button, int action, i
         }
         else if (button == GLFW_MOUSE_BUTTON_LEFT) {
             MOVEMENT = ROTATION;
-            std::cout << "LEFT clicked at " <<  curr_point[0] << " " << curr_point[1] << std::endl;
+            //std::cout << "LEFT clicked at " <<  curr_point[0] << " " << curr_point[1] << std::endl;
         }
         
         else if( button == GLFW_MOUSE_BUTTON_RIGHT) {
@@ -451,9 +454,7 @@ void Window::mouse_button_callback(GLFWwindow* window, int button, int action, i
     }
 }
 
-void Window::light_mode(int mode) {
-    
-}
+
 void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 
@@ -472,11 +473,32 @@ void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, 
             switch (key) {
                 
                 case GLFW_KEY_1:
-                    cout << "1pressed" << endl;
+                    //cout << "1pressed" << endl;
                     currentObj = hmap;
                     break;
                 case GLFW_KEY_2:
-                    currentObj = dragonObj;
+                    if(particleMode == 0) particleMode = 1;
+                    else particleMode = 0;
+                    break;
+                case GLFW_KEY_S:
+                    eye = eye + glm::vec3(0,0,1);
+                    center = eye + glm::vec3(0,0,-10);
+                    view = glm::lookAt(eye, center, up);
+                    break;
+                case GLFW_KEY_W:
+                    eye = eye + glm::vec3(0,0,-1);
+                    center = eye + glm::vec3(0,0,-10);
+                    view = glm::lookAt(eye, center, up);
+                    break;
+                case GLFW_KEY_D:
+                    eye = eye + glm::vec3(1,0,0);
+                    center = eye + glm::vec3(0,0,-10);
+                    view = glm::lookAt(eye, center, up);
+                    break;
+                case GLFW_KEY_A:
+                    eye = eye + glm::vec3(-1,0,0);
+                    center = eye + glm::vec3(0,0,-10);
+                    view = glm::lookAt(eye, center, up);
                     break;
                 default:
                     break;
