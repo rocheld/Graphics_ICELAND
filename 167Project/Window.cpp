@@ -32,6 +32,10 @@ namespace
     glm::vec3 eye(0, 0, 50); // Camera position.
     glm::vec3 center(0, 0, 0); // The point we are looking at.
     glm::vec3 up(0, 10, 0); // The up direction of the camera.
+
+    glm::vec3 camera_forward(0,0,0);
+    glm::vec3 camera_left(0,0,0);
+
     float fovy = 60;
     float near = 1;
     float far = 1000;
@@ -345,8 +349,11 @@ void Window::cursor_position_callback(GLFWwindow* window, double xpos, double yp
     curr = trackBallMapping(glm::vec3(xpos,ypos,0.0f));
     direction = curr - last_point;
     glm::vec3 cross_product = glm::cross(last_point,curr);
+    cross_product = glm::normalize(cross_product);
+    last_point = normalize(last_point);
+    curr = normalize(curr);
+    float angle = glm::angle(last_point,curr);
     velocity = glm::length(direction);
-    
     switch (MOVEMENT) {
         case ROTATION:
             
@@ -354,7 +361,7 @@ void Window::cursor_position_callback(GLFWwindow* window, double xpos, double yp
                     //std::cerr << "slow" << std::endl;
             }
             else {
-                    
+                    camera_front = center;
                     // camera moving
                     glm::mat4 matrix1 = glm::mat4(1.0f);
                     glm::mat4 matrix2 = glm::mat4(1.0f);
@@ -362,7 +369,7 @@ void Window::cursor_position_callback(GLFWwindow* window, double xpos, double yp
                     glm::vec4 xyzw = glm::vec4(camera_front,1.0f);
                     
                     matrix1 = glm::translate(matrix1,-eye);
-                    matrix2 = glm::rotate(matrix2, velocity, cross_product);
+                    matrix2 = glm::rotate(matrix2, angle, cross_product);
                     matrix3 = glm::translate(matrix3,eye);
        
                     xyzw = matrix3*matrix2*matrix1*xyzw;
@@ -370,17 +377,14 @@ void Window::cursor_position_callback(GLFWwindow* window, double xpos, double yp
                     camera_front.x = xyzw.x/xyzw.w;
                     camera_front.y = xyzw.y/xyzw.w;
                     camera_front.z = xyzw.z/xyzw.w;
+                
                 //camera_front = glm::normalize(camera_front);
                     center = camera_front;
-                    cout << "center " << center.x << center.y << center.z << endl;
-                    glm::vec3 forward = eye - center;
-                    cout << "forward " << forward.x << forward.y << forward.z << endl;
-                    forward = glm::normalize(forward);
-                    glm::vec3 left = glm::cross(forward,left);
-                    
-                    left = glm::normalize(left);
-                    cout <<"left" << left.x << left.y << left.z << endl;
-                    //up = glm::cross(forward,left);
+                    camera_forward = eye - center;
+                    camera_forward = glm::normalize(camera_forward);
+                    camera_left = glm::cross(up,camera_forward);
+                    camera_left = glm::normalize(camera_left);
+                
                     cout << up.x << up.y << up.z << endl;
                     view = glm::lookAt(eye, camera_front, up);
                     
@@ -472,6 +476,7 @@ void Window::mouse_button_callback(GLFWwindow* window, int button, int action, i
 void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 
+    
     // Check for a key press.
     if (action == GLFW_PRESS)
     {
@@ -497,11 +502,25 @@ void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, 
                 case GLFW_KEY_S:
                     eye = eye + glm::normalize(eye - center);
                     center = center + glm::normalize(eye - center);
+                    
+                    camera_forward = eye - center;
+                    camera_forward = glm::normalize(camera_forward);
+                    camera_left = glm::cross(up,camera_forward);
+                    camera_left = glm::normalize(camera_left);
+                    up = glm::cross(camera_forward,camera_left);
+                    up = glm::normalize(up);
                     view = glm::lookAt(eye, center, up);
                     break;
                 case GLFW_KEY_W:
                     eye = eye + glm::normalize(center - eye);
                     center = center + glm::normalize(center - eye);
+                    
+                    camera_forward = eye - center;
+                    camera_forward = glm::normalize(camera_forward);
+                    camera_left = glm::cross(up,camera_forward);
+                    camera_left = glm::normalize(camera_left);
+                    up = glm::cross(camera_forward,camera_left);
+                    up = glm::normalize(up);
                     view = glm::lookAt(eye, center, up);
                     break;
               
