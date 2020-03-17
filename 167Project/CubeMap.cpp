@@ -203,6 +203,7 @@ unsigned int CubeMap::loadTexture()
   int twidth, theight,nrch;   // texture width/height [pixels]
   unsigned char* tdata = 0;  // texture pixel data
   // Create ID for texture
+    glActiveTexture(GL_TEXTURE0);
   glGenTextures(1, &textureID);
   // Set this texture to be the one we are working with
   glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);

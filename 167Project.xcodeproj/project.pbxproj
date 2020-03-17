@@ -74,6 +74,9 @@
 		D245A9AF24052E5000694F90 /* skybox.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = skybox.frag; sourceTree = "<group>"; };
 		D27B70082420709D00F20760 /* terrain.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = terrain.frag; sourceTree = "<group>"; };
 		D27B700B242072FD00F20760 /* terrain.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = terrain.vert; sourceTree = "<group>"; };
+		D27B70122420915E00F20760 /* terrain.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = terrain.jpg; sourceTree = "<group>"; };
+		D27B70132420A64400F20760 /* terrain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrain.png; sourceTree = "<group>"; };
+		D27B70142420A74E00F20760 /* terrain2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrain2.png; sourceTree = "<group>"; };
 		D29BCB1D2409A1AE002C3A94 /* line.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = line.frag; sourceTree = "<group>"; };
 		D29BCB1E2409A1C4002C3A94 /* line.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = line.vert; sourceTree = "<group>"; };
 		D2D457C4241722B3008ED186 /* stb_image_aug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = stb_image_aug.c; path = 167Project/stb_image_aug.c; sourceTree = SOURCE_ROOT; };
@@ -150,6 +153,7 @@
 				D2D457FC24173423008ED186 /* sphere.obj */,
 				D245A9822404BA4F00694F90 /* CubeMap.cpp */,
 				D245A9832404BA4F00694F90 /* CubeMap.hpp */,
+				D27B70142420A74E00F20760 /* terrain2.png */,
 				D222A7D923E9142D000E1075 /* main.h */,
 				D222A7D623E9142D000E1075 /* Object.h */,
 				D222A7D423E9142D000E1075 /* shader.cpp */,
@@ -160,6 +164,8 @@
 				D2D457EB241723DC008ED186 /* base.ppm */,
 				D2D457EA241723DC008ED186 /* front.jpg */,
 				D2D457E9241723DC008ED186 /* front.ppm */,
+				D27B70132420A64400F20760 /* terrain.png */,
+				D27B70122420915E00F20760 /* terrain.jpg */,
 				D2D457E8241723DC008ED186 /* left.ppm */,
 				D2D457E1241723DC008ED186 /* right.ppm */,
 				D2D457E6241723DC008ED186 /* top.ppm */,

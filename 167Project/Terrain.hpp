@@ -35,7 +35,7 @@ class Terrain : public Object
     vector<vector<float> > map;
     vector<glm::ivec3> face;
     vector<glm::vec3> vertex;
-    
+    unsigned int texture, texture2;
     GLuint vao, vao2, vbo, vbo2, ebo; // Added vbo2
     int size;
     
@@ -47,5 +47,7 @@ class Terrain : public Object
 
     void draw();
     void update();
+    void loadTexture();
+    void filter(float k);
 };
 #endif /* terrain_hpp */

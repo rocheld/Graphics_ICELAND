@@ -29,8 +29,8 @@ namespace
     
     // Camera
     glm::vec3 eye(0, 0, 20); // Camera position.
-    glm::vec3 center(0, 0, 0); // The point we are looking at.
-    glm::vec3 up(0, 1, 0); // The up direction of the camera.
+    glm::vec3 center(0, 3, 0); // The point we are looking at.
+    glm::vec3 up(0, 10, 0); // The up direction of the camera.
     float fovy = 60;
     float near = 1;
     float far = 1000;
@@ -91,7 +91,7 @@ namespace
 
     GLuint programSky;
     GLuint projectionSky; // Location of projection in shader.
-GLuint programT;
+    GLuint programT;
     GLuint modelT,colorT,viewT,projectionT;
     GLuint viewSky;
     GLuint modelSky;
@@ -284,7 +284,6 @@ void Window::displayCallback(GLFWwindow* window)
         
         // Switch back to using OpenGL's rasterizer
         glUseProgram(programT);
-        currentObj = hmap;
         glm::mat4 model = hmap->getModel();
         glm::vec3 color = hmap->getColor();
     
@@ -292,9 +291,19 @@ void Window::displayCallback(GLFWwindow* window)
         glUniformMatrix4fv(viewT, 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(modelT, 1, GL_FALSE, glm::value_ptr(model));
         glUniform3fv(colorT, 1, glm::value_ptr(color));
-        currentObj->draw();
-        //dragonObj->draw();
+        hmap->draw();
         
+        glUseProgram(program);
+        model = dragonObj->getModel();
+        color = dragonObj->getColor();
+        
+        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform3fv(colorLoc, 1, glm::value_ptr(color));
+        
+        // draw should be placed right after UniformMatrix call
+        //dragonObj->draw();
         // Gets events, including input such as keyboard and mouse or window resizing.
         glfwPollEvents();
         // Swap buffers.
@@ -339,10 +348,12 @@ void Window::cursor_position_callback(GLFWwindow* window, double xpos, double yp
                     camera_front.x = xyzw.x/xyzw.w;
                     camera_front.y = xyzw.y/xyzw.w;
                     view = glm::lookAt(eye, camera_front, up);
-                
+                    
+                /*
                     m = currentObj->getModel();
                     m = glm::rotate(m, velocity*2.0f,cross_product);
                     currentObj->setModel(m);
+                 */
                 }
             break;
             
@@ -434,6 +445,21 @@ void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, 
         // Uppercase key presses (shift held down + key press)
         if (mods == GLFW_MOD_SHIFT) {
             switch (key) {
+                default:
+                    break;
+            }
+        }
+        
+        else {
+            switch (key) {
+                
+                case GLFW_KEY_1:
+                    cout << "1pressed" << endl;
+                    currentObj = hmap;
+                    break;
+                case GLFW_KEY_2:
+                    currentObj = dragonObj;
+                    break;
                 default:
                     break;
             }

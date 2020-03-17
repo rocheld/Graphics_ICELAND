@@ -190,9 +190,9 @@ void PointCloud::ScaleAndCenter() {
     c_z = (max_z + min_z) / 2;
     
     // Find a scale factor for the object to be fit in a 2x2x2 cube
-    float scale_x = 2.f / (max_x - min_x);
-    float scale_y = 2.f / (max_y - min_y);
-    float scale_z = 2.f / (max_z - min_z);
+    float scale_x = 5.f / (max_x - min_x);
+    float scale_y = 5.f / (max_y - min_y);
+    float scale_z = 5.f / (max_z - min_z);
    
     float factor = std::min(scale_z,std::min(scale_x,scale_y));
     
@@ -201,6 +201,7 @@ void PointCloud::ScaleAndCenter() {
     
     model = glm::scale(glm::vec3(factor));
     model = glm::translate(model,center);
+    model = glm::rotate(model, 1.58f, glm::vec3(0.0f, -1.0f, 0.0f));
 
     
 }
