@@ -21,6 +21,8 @@ void setupCallbacks(GLFWwindow* window)
     glfwSetCursorPosCallback(window, Window::cursor_position_callback);
     
     glfwSetScrollCallback(window, Window::scroll_callback);
+    
+    glfwSetInputMode(window, GLFW_STICKY_MOUSE_BUTTONS, 1);
 }
 
 void setupOpenglSettings()

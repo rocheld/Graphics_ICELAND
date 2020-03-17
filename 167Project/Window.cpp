@@ -29,7 +29,7 @@ namespace
     std::vector<Object*> temp;
     
     // Camera
-    glm::vec3 eye(0, 0, 20); // Camera position.
+    glm::vec3 eye(0, 0, 50); // Camera position.
     glm::vec3 center(0, 0, 0); // The point we are looking at.
     glm::vec3 up(0, 10, 0); // The up direction of the camera.
     float fovy = 60;
@@ -271,7 +271,8 @@ void Window::idleCallback()
 
 void Window::displayCallback(GLFWwindow* window)
 {
-   
+        std::cout <<  eye.x << " " << eye.y << ""  << eye.z << std::endl;
+    
         glUseProgram(programSky);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glm::vec3 c = skybox->getColor();
@@ -369,7 +370,7 @@ void Window::cursor_position_callback(GLFWwindow* window, double xpos, double yp
                     camera_front.x = xyzw.x/xyzw.w;
                     camera_front.y = xyzw.y/xyzw.w;
                     view = glm::lookAt(eye, camera_front, up);
-                    
+                    center = camera_front;
                 /*
                     m = currentObj->getModel();
                     m = glm::rotate(m, velocity*2.0f,cross_product);
@@ -481,13 +482,13 @@ void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, 
                     else particleMode = 0;
                     break;
                 case GLFW_KEY_S:
-                    eye = eye + glm::vec3(0,0,1);
-                    center = eye + glm::vec3(0,0,-10);
+                    eye = eye + glm::normalize(eye - center);
+                    center = center + glm::normalize(eye - center);
                     view = glm::lookAt(eye, center, up);
                     break;
                 case GLFW_KEY_W:
-                    eye = eye + glm::vec3(0,0,-1);
-                    center = eye + glm::vec3(0,0,-10);
+                    eye = eye + glm::normalize(center - eye);
+                    center = center + glm::normalize(center - eye);
                     view = glm::lookAt(eye, center, up);
                     break;
               
