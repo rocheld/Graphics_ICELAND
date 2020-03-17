@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D51D6A1242080DD004E8020 /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D51D69F242080DD004E8020 /* Cube.cpp */; };
+		5D51D6A1242080DD004E8020 /* HW0 in Sources */ = {isa = PBXBuildFile; fileRef = 5D51D69F242080DD004E8020 /* HW0 */; };
 		5D51D6A42420ACDB004E8020 /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D51D6A22420ACDB004E8020 /* Cube.cpp */; };
 		D222A7BE23E91312000E1075 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D222A7BD23E91312000E1075 /* main.cpp */; };
 		D222A7C623E91339000E1075 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D222A7C523E91339000E1075 /* OpenGL.framework */; };
@@ -55,7 +55,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5D51D69F242080DD004E8020 /* Cube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cube.cpp; path = ../../HW0/Cube.cpp; sourceTree = "<group>"; };
+		5D51D69F242080DD004E8020 /* HW0 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = HW0; path = ../../HW0/HW0; sourceTree = "<group>"; };
 		5D51D6A0242080DD004E8020 /* Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cube.h; path = ../../HW0/Cube.h; sourceTree = "<group>"; };
 		5D51D6A22420ACDB004E8020 /* Cube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cube.cpp; sourceTree = "<group>"; };
 		5D51D6A32420ACDB004E8020 /* Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cube.h; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		D222A7BC23E91312000E1075 /* 167Project */ = {
 			isa = PBXGroup;
 			children = (
-				5D51D69F242080DD004E8020 /* Cube.cpp */,
+				5D51D69F242080DD004E8020 /* HW0 */,
 				5D51D6A0242080DD004E8020 /* Cube.h */,
 				5D51D6A22420ACDB004E8020 /* Cube.cpp */,
 				5D51D6A32420ACDB004E8020 /* Cube.h */,
@@ -319,7 +319,7 @@
 				D2D4580C24173A71008ED186 /* Terrain.cpp in Sources */,
 				D245A9842404BA4F00694F90 /* CubeMap.cpp in Sources */,
 				D2D457F92417241E008ED186 /* Transform.cpp in Sources */,
-				5D51D6A1242080DD004E8020 /* Cube.cpp in Sources */,
+				5D51D6A1242080DD004E8020 /* HW0 in Sources */,
 				D2D457CE241722B3008ED186 /* stb_image_aug.c in Sources */,
 				D2D457D0241722B3008ED186 /* image_DXT.c in Sources */,
 				D2D457FA2417241E008ED186 /* Node.cpp in Sources */,

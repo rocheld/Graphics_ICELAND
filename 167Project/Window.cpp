@@ -137,7 +137,7 @@ bool Window::initializeObjects()
     skybox = new CubeMap();
     dragon = new PointCloud("dragon.obj", 1.0f);
     sphere = new PointCloud("sphere.obj",1.0f);
-    //hmap  = new Terrain(513);
+    hmap  = new Terrain(513);
     
     cube = new Cube(0.3f,clock(),flip);
     currentObj = cube;
@@ -281,8 +281,9 @@ void Window::displayCallback(GLFWwindow* window)
         skybox->draw();
         
         // Switch back to using OpenGL's rasterizer
-        /*
+        
         glUseProgram(programT);
+        
         glm::mat4 model = hmap->getModel();
         glm::vec3 color = hmap->getColor();
     
@@ -290,16 +291,11 @@ void Window::displayCallback(GLFWwindow* window)
         glUniformMatrix4fv(viewT, 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(modelT, 1, GL_FALSE, glm::value_ptr(model));
         glUniform3fv(colorT, 1, glm::value_ptr(color));
-<<<<<<< HEAD
         hmap->draw();
         
         glUseProgram(program);
-        model = dragonObj->getModel();
-        color = dragonObj->getColor();
-=======
-        currentObj->draw();
         //dragonObj->draw();
-         */
+         
     
     
     
@@ -316,7 +312,7 @@ void Window::displayCallback(GLFWwindow* window)
         // Render the object.
             particles[i]->draw();
         }
->>>>>>> origin1/master
+
         
         glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
