@@ -171,7 +171,7 @@ void PointCloud::draw()
 	// Draw points 
 	glDrawArrays(GL_POINTS, 0, points.size());
     // Draw triangles
-    glDrawElements(GL_TRIANGLES, 3*triangle.size(), GL_UNSIGNED_INT, 0);
+    //glDrawElements(GL_TRIANGLES, 3*triangle.size(), GL_UNSIGNED_INT, 0);
     // Unbind from the VAO.
     glBindVertexArray(0);
 }

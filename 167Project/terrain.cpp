@@ -8,73 +8,182 @@
 
 #include "Terrain.hpp"
 #include <stdlib.h>
+#include <time.h>
+#include <iostream>
 
 using namespace std;
 
 Terrain::Terrain(int size) {
+    model = glm::mat4(1.0f);
+    color = glm::vec3(1.0f, 0.95f, 0.1f);
+    glm::vec3 center ;
+    float cx = (float) size / 2.0f;
+    center = glm::vec3(-cx,-50.0f,-cx);
+    model = glm::translate(model,center);
+    
     this->width = size-1;
     this->height = size-1;
     this->squareLen = size -1;
-
+    this->size = size;
     // set four corners
-    int x = width -1;
-    int y = height - 1;
+    int x = width;
+    int y = height;
     
     vector<float> temp;
     
     for(int i=0; i < size; i++) {
-        h_map.push_back(temp);
+        map.push_back(temp);
         for(int j=0; j < size; j++) {
-            h_map[i].push_back(0.0f);
+            map[i].push_back(0.0f);
         }
     }
     
-    // Initialize
-    h_map[0][0] = 10.0f;
-    h_map[width][0] = 10.0f;
-    h_map[0][height] = 10.0f;
-    h_map[height][width] = 10.0f;
-    c_x = width;
-    c_y = height;
+    // Initialize four points
+    map[0][0] = 10.0f;
+    map[width][0] = 5.0f;
+    map[0][height] = 3.0f;
+    map[height][width] = 10.0f;
+    int half;
+    srandom((unsigned)time(NULL));
     while(squareLen > 1) {
+        half = squareLen / 2;
         
+        for(int i =0; i < this->height; i += squareLen) {
+            for(int j=0; j < this->width; j += squareLen) {
+                d_step(j,i,squareLen,rand()%(squareLen));
+            }
+        }
+        
+        for(int i=0; i < this->height; i += half) {
+            for(int j=0; j < this->width; j += half) {
+                s_step(j,i,half,rand()%(squareLen));
+            }
+        }
+        squareLen -= half;
     }
+    /*
+    int cnt = 0;
+    for(int i=0; i < size; i ++) {
+        for(int j=0; j < size; j++) {
+            cout << cnt << " " << i << j<< " " << map[i][j] << endl;
+            cnt++;
+        }
+    }
+    */
+    mesh();
+    
+    glGenVertexArrays(1, &vao);
+    glGenBuffers(1, &vbo);
+
+    // Bind to the VAO.
+    // This tells OpenGL which data it should be paying attention to
+    glBindVertexArray(vao);
+
+    // Bind to the first VBO. We will use it to store the points.
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    
+    
+    // Pass in the data.
+    glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * vertex.size(),
+        vertex.data(), GL_STATIC_DRAW);
+    // Enable vertex attribute 0.
+    // We will be able to access points through it.
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
+    
+    // Triangle
+    glGenBuffers(1, &ebo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(glm::ivec3)*face.size(), face.data(), GL_STATIC_DRAW);
+    
+
+    
+    
+    // Unbind from the VBO.
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    // Unbind from the VAO.
+    glBindVertexArray(0);
+    
     
 }
-
+void Terrain::update() {
+    
+}
+void Terrain::draw() {
+    // Bind to the VAO.
+    glBindVertexArray(vao);
+    // Set point size.
+    glPointSize(0.1f);
+    // Draw points
+    glDrawArrays(GL_POINTS, 0, vertex.size());
+    // Draw triangles
+    glDrawElements(GL_LINES, 3*face.size(), GL_UNSIGNED_INT, 0);
+    // Unbind from the VAO.
+    glBindVertexArray(0);
+}
 void Terrain::d_step(int x, int y, int size, int r) {
     
+    float topLeft,topRight,botLeft,botRight;
     float avg;
-
-    avg = h_map[x][y] + h_map[width-x-1][y] + h_map[x][height-y-1] +h_map[height-x-1][width-y-1];
-    avg /= 4;
+    int cnt = 0;
     
-    c_x = x / 2;
-    c_y = c_x;
-    size = size / 2;
+    botLeft = map[x][y];
+    topLeft = map[x][y+size];
+    topRight = map[x+size][y+size];
+    botRight = map[x+size][y];
     
-    h_map[c_x][c_y] = avg + r;
+    avg = topRight + topLeft + botLeft + botRight;
+    avg /= 4.0f;
     
-    s_step(c_x,c_y, size, 1);
+    int half = size/2;
+    map[x+half][y+half] = avg;
+    
 }
 
+void Terrain::s_step(int x, int y, int half, int r) {
+    float down;
+    float left;
+    float right;
+    float top;
+    
+    int whole = half+half;
+    float center = map[x+half][y+half];
+    if(half >= 1 && x+whole < size && y+whole < size) {
+        down = (map[x][y] + center + map[x+half+half][y])/3;
+        left = (map[x][y] + center + map[x][y+whole])/3;
+        top = (map[x][y+half] + center + map[x+whole][y+whole])/3;
+        right = (map[x+whole][y+whole] + center + map[x+whole][y])/3;
+        
+        map[x+half][y] = down + r; // down
+        map[x][y+half] = left + r; // left
+        map[x+half][y+whole] = top +r; // top
+        map[x+whole][y+half] = right + r; // right
+    }
+}
 
-void Terrain::s_step(int x, int y, int size, int r) {
-    
-    if(x-size >= 0) {
-        
+void Terrain::mesh() {
+    for(int i=0; i < size; i ++) {
+        for(int j=0; j < size; j++) {
+            glm::vec3 temp;
+            temp = glm::vec3(i,map[i][j],j);
+            vertex.push_back(temp);
+        }
     }
     
-    if(x+size <= width) {
-        
+    int looper = size*(size-1);
+    int count = 0;
+    for(int i=0; i <looper ; i++) {
+        if(count == size-1) {
+            count = 0;
+            continue;
+        }
+        count++;
+        glm::ivec3 temp1;
+        glm::ivec3 temp2;
+        //cout << i+1 << i+1+size << i+size << endl;
+        temp1 = glm::ivec3(i,i+1,i+1+width);
+        temp2 = glm::ivec3(i+1,i+1+size,i+size);
+        face.push_back(temp1);
+        face.push_back(temp2);
     }
-    
-    if(y-size >= 0) {
-        
-    }
-    
-    if(y+size <= height) {
-        
-    }
-    
 }

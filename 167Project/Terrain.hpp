@@ -21,10 +21,10 @@
 #include <vector>
 
 #include <vector>
-
+#include "Object.h"
 using namespace std;
 
-class Terrain
+class Terrain : public Object
 {
     private:
     int width;
@@ -32,13 +32,20 @@ class Terrain
     int squareLen;
     int c_x;
     int c_y;
-    vector<vector<float> > h_map;
+    vector<vector<float> > map;
+    vector<glm::ivec3> face;
+    vector<glm::vec3> vertex;
     
+    GLuint vao, vao2, vbo, vbo2, ebo; // Added vbo2
+    int size;
     
     public:
     Terrain(int size);
     void d_step(int x, int y, int size, int r);
     void s_step(int x, int y, int size, int r);
-    
+    void mesh();
+
+    void draw();
+    void update();
 };
 #endif /* terrain_hpp */

@@ -91,6 +91,8 @@ namespace
 
     GLuint programSky;
     GLuint projectionSky; // Location of projection in shader.
+GLuint programT;
+    GLuint modelT,colorT,viewT,projectionT;
     GLuint viewSky;
     GLuint modelSky;
     GLuint colorSky;
@@ -109,6 +111,7 @@ bool Window::initializeProgram()
     // skybox shader
     programSky = LoadShaders("shaders/skybox.vert", "shaders/skybox.frag");
     programLine = LoadShaders("shaders/line.vert", "shaders/line.frag");
+    programT = LoadShaders("shaders/terrain.vert", "shaders/terrain.frag");
     
     // Check the shader programs.
     if (!program)
@@ -133,7 +136,11 @@ bool Window::initializeProgram()
     modelSky = glGetUniformLocation(programSky, "model");
     colorSky = glGetUniformLocation(programSky, "color");
     
-    
+    glUseProgram(programT);
+    projectionT = glGetUniformLocation(programT, "projection");
+    viewT = glGetUniformLocation(programT, "view");
+    modelT = glGetUniformLocation(programT, "model");
+    colorT = glGetUniformLocation(programT, "color");
     return true;
 }
 
@@ -143,7 +150,7 @@ bool Window::initializeObjects()
     skybox = new CubeMap();
     dragon = new PointCloud("dragon.obj", 1.0f);
     sphere = new PointCloud("sphere.obj",1.0f);
-    //hmap  = new Terrain(5);
+    hmap  = new Terrain(513);
     
     
     sphereObj = sphere;
@@ -167,7 +174,7 @@ bool Window::initializeObjects()
     rot_matrix[0] = glm::vec3(cc,0,-ss);
     rot_matrix[1] = glm::vec3(0,1,0);
     rot_matrix[2] = glm::vec3(ss,0,cc);
-    
+    currentObj = hmap;
     return true;
 }
 
@@ -265,7 +272,6 @@ void Window::idleCallback()
 void Window::displayCallback(GLFWwindow* window)
 {
    
-        currentObj = skybox;
         glUseProgram(programSky);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glm::vec3 c = skybox->getColor();
@@ -277,18 +283,17 @@ void Window::displayCallback(GLFWwindow* window)
         skybox->draw();
         
         // Switch back to using OpenGL's rasterizer
-        glUseProgram(program);
-        
-        glm::mat4 model = dragonObj->getModel();
-        glm::vec3 color = dragonObj->getColor();
-
-        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        glUniform3fv(colorLoc, 1, glm::value_ptr(color));
-
-        dragonObj->draw();
-        
+        glUseProgram(programT);
+        currentObj = hmap;
+        glm::mat4 model = hmap->getModel();
+        glm::vec3 color = hmap->getColor();
+    
+        glUniformMatrix4fv(projectionT, 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(viewT, 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(modelT, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform3fv(colorT, 1, glm::value_ptr(color));
+        currentObj->draw();
+        //dragonObj->draw();
         
         // Gets events, including input such as keyboard and mouse or window resizing.
         glfwPollEvents();
