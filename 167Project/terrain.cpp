@@ -76,7 +76,7 @@ Terrain::Terrain(int size) {
         filter(0.75f);
     
     
-    center = glm::vec3(-cx,-maxHeight,-cx);
+    center = glm::vec3(-cx,-maxHeight,cx);
     model = glm::translate(model,center);
     mesh();
     
