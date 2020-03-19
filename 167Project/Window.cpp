@@ -77,10 +77,11 @@ namespace
     GLuint programLine;
     GLuint projectionLine; // Location of projection in shader.
     GLuint viewLine;
+    GLuint normal_flag;
     glm::vec3 camera_front = center;
 
 
-
+    bool nmode = false;
     vector<Cube*> particles;
     float startTime;
     int flip;
@@ -125,6 +126,7 @@ bool Window::initializeProgram()
     viewT = glGetUniformLocation(programT, "view");
     modelT = glGetUniformLocation(programT, "model");
     colorT = glGetUniformLocation(programT, "color");
+    normal_flag = glGetUniformLocation(programT, "flag");
     return true;
 }
 
@@ -292,6 +294,10 @@ void Window::displayCallback(GLFWwindow* window)
         glUniformMatrix4fv(viewT, 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(modelT, 1, GL_FALSE, glm::value_ptr(model));
         glUniform3fv(colorT, 1, glm::value_ptr(color));
+        if(nmode)
+            glUniform1i(normal_flag, 1);
+        else
+            glUniform1i(normal_flag, 0);
         hmap->draw();
         
         glUseProgram(program);
@@ -310,7 +316,7 @@ void Window::displayCallback(GLFWwindow* window)
             glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
             glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
             glUniform3fv(colorLoc, 1, glm::value_ptr(color));
-
+            
         // Render the object.
             particles[i]->draw();
         }
@@ -526,7 +532,9 @@ void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, 
                     hmap->generate();
 
                     break;
-              
+                case GLFW_KEY_N:
+                    nmode = !nmode;
+                    break;
                 default:
                     break;
             }

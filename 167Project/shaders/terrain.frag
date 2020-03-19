@@ -8,7 +8,9 @@ out vec4 fragColor;
 uniform vec3 color;
 in vec2 TexCoord2;
 uniform sampler2D tex;
+uniform int flag;
 in vec3 normal;
+
 // You can output many things. The first vec4 type output determines the color of the fragment
 
 void main()
@@ -18,6 +20,7 @@ void main()
     
     fragColor = vec4(color,1.0f);
     fragColor = texture(tex,TexCoord2);
-    fragColor = vec4(normal,1.0f);
+    if(flag == 1)
+        fragColor = vec4(normal,1.0f);
     //fragColor = texture(tex,TexCoord2);
 }
