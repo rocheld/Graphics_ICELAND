@@ -4,7 +4,7 @@
  * Declare your variables below. Unnamed namespace is used here to avoid
  * declaring global or static variables.
  
- * 
+ *
  */
 namespace
 {
@@ -64,13 +64,7 @@ namespace
     const int ZOOM = 3;
     const int ARMYSPIN = 4;
 
-
-
     glm::vec3 lightPos = glm::vec3(0.0f,0.0f,15.0f);
-
-
-
-
 
     GLuint programSky;
     GLuint projectionSky; // Location of projection in shader.
@@ -143,13 +137,11 @@ bool Window::initializeObjects()
     skybox = new CubeMap();
     dragon = new PointCloud("dragon.obj", 1.0f);
     sphere = new PointCloud("sphere.obj",1.0f);
-    hmap  = new Terrain(33);
+    hmap  = new Terrain(65);
     
     cube = new Cube(0.3f,clock(),flip);
     currentObj = cube;
     particles.push_back(cube);
-    
-    
     
     sphereObj = sphere;
     dragonObj = dragon;
@@ -172,6 +164,7 @@ void Window::cleanUp()
     // Deallcoate the objects.
     delete dragon;
     delete sphere;
+    delete hmap;
     
 }
 
@@ -523,7 +516,9 @@ void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, 
                     up = glm::normalize(up);
                     view = glm::lookAt(eye, center, up);
                     break;
-              
+                case GLFW_KEY_R:
+                    hmap->generate();
+                    break;
                 default:
                     break;
             }

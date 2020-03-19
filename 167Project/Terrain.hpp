@@ -35,12 +35,14 @@ class Terrain : public Object
     vector<vector<float> > map;
     vector<glm::ivec3> face;
     vector<glm::vec3> vertex;
+    vector<glm::vec3> normal;
     unsigned int texture, texture2;
     GLuint vao, vao2, vbo, vbo2, ebo; // Added vbo2
     int size;
-    
+    int cnt;
     public:
     Terrain(int size);
+    ~Terrain();
     int maxHeight;
     void d_step(int x, int y, int size, int r);
     void s_step(int x, int y, int size, int r);
@@ -50,5 +52,6 @@ class Terrain : public Object
     void update();
     void loadTexture();
     void filter(float k);
+    void generate();
 };
 #endif /* terrain_hpp */
