@@ -29,7 +29,8 @@ namespace
     std::vector<Object*> temp;
     
     // Camera
-    glm::vec3 eye(0, 0, 50); // Camera position.
+
+    glm::vec3 eye(0, 0, 80); // Camera position.
     glm::vec3 center(0, 0, 0); // The point we are looking at.
     glm::vec3 up(0, 10, 0); // The up direction of the camera.
 
@@ -378,7 +379,8 @@ void Window::cursor_position_callback(GLFWwindow* window, double xpos, double yp
                     camera_left = glm::cross(up,camera_forward);
                     camera_left = glm::normalize(camera_left);
                 
-                    cout << up.x << up.y << up.z << endl;
+                    //cout << up.x << up.y << up.z << endl;
+
                     view = glm::lookAt(eye, camera_front, up);
                     
                 /*
@@ -469,9 +471,9 @@ void Window::mouse_button_callback(GLFWwindow* window, int button, int action, i
 void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 
-    
+
     // Check for a key press.
-    if (action == GLFW_PRESS)
+    if (action == GLFW_PRESS || action == 2)
     {
         // Uppercase key presses (shift held down + key press)
         if (mods == GLFW_MOD_SHIFT) {
@@ -493,7 +495,8 @@ void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, 
                     else particleMode = 0;
                     break;
                 case GLFW_KEY_S:
-                    eye = eye + glm::normalize(eye - center);
+
+                    eye = eye + glm::normalize(eye - center) * 0.3f;
                     center = center + glm::normalize(eye - center);
                     
                     camera_forward = eye - center;
@@ -505,7 +508,9 @@ void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, 
                     view = glm::lookAt(eye, center, up);
                     break;
                 case GLFW_KEY_W:
-                    eye = eye + glm::normalize(center - eye);
+
+                    
+                    eye = eye + (glm::normalize(center - eye)) * 0.3f;
                     center = center + glm::normalize(center - eye);
                     
                     camera_forward = eye - center;
@@ -515,10 +520,13 @@ void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, 
                     up = glm::cross(camera_forward,camera_left);
                     up = glm::normalize(up);
                     view = glm::lookAt(eye, center, up);
+
                     break;
                 case GLFW_KEY_R:
                     hmap->generate();
+
                     break;
+              
                 default:
                     break;
             }

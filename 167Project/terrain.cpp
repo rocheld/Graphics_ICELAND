@@ -139,9 +139,9 @@ void Terrain::filter(float k) {
             h = map[i+1][j] * (1-k) + map[i][j] * k;
             float z;
             if( j == width)
-                z = map[i][j+1] * (1-k) + map[i][j] * k;
-            else
                 z = map[i][j-1] * (1-k) + map[i][j] * k;
+            else
+                z = map[i][j+1] * (1-k) + map[i][j] * k;
             
             map[i][j] = (h+z)/2.0f;
             

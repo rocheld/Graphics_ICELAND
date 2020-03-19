@@ -8,10 +8,12 @@ void errorCallback(int error, const char* description)
 
 void setupCallbacks(GLFWwindow* window)
 {
+    
 	// Set the error callback.
 	glfwSetErrorCallback(errorCallback);
 	// Set the key callback.
 	glfwSetKeyCallback(window, Window::keyCallback);
+    glfwSetInputMode(window, GLFW_STICKY_KEYS, GLFW_TRUE);
 	// Set the window resize callback.
 	glfwSetWindowSizeCallback(window, Window::resizeCallback);
     

@@ -5,7 +5,7 @@ Cube::Cube(float size, float time, int flip)
 	// Model matrix. Since the original size of the cube is 2, in order to
 	// have a cube of some size, we need to scale the cube by size / 2.
     model = glm::mat4(1.0f);
-    glm:: mat4 model2 = glm::translate(glm::vec3(flip*rand()%300 - 200,250,rand()%300 + 350));
+    glm:: mat4 model2 = glm::translate(glm::vec3(flip*rand()%300 - 200,250,rand()%600 + 1000));
 	model = glm::scale(glm::vec3(size / 5.0f)) * model2 *model;
 
 	// The color of the cube. Try setting it to something else!
